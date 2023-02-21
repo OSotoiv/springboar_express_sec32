@@ -1,5 +1,5 @@
 const express = require('express');
-const { getMEAN, getMEDIAN, getMODE, validQuery, saveJSON } = require('./helpers')
+const { getMEAN, getMEDIAN, getMODE, validQuery, saveJSON, createJSONres, createJSONresALL } = require('./helpers')
 const { QueryError } = require('./errors');
 const { request } = require('express');
 
@@ -12,7 +12,7 @@ app.get('/mean', function (req, res, next) {
     try {
         validQuery(req.query.nums);
         const mean = getMEAN(req.query.nums)
-        const resAsJson = { response: { operation: "mean", value: mean } };
+        const resAsJson = createJSONres('mean', mean);
         if (req.query.save === 'true') {
             saveJSON(resAsJson);
         }
@@ -31,7 +31,7 @@ app.get('/median', function (req, res, next) {
     try {
         validQuery(req.query.nums);
         const median = getMEDIAN(req.query.nums);
-        const resAsJson = { response: { operation: "median", value: median } }
+        const resAsJson = createJSONres('median', median);
         if (req.query.save === 'true') {
             saveJSON(resAsJson);
         }
@@ -50,7 +50,7 @@ app.get('/mode', function (req, res, next) {
     try {
         validQuery(req.query.nums);
         const mode = getMODE(req.query.nums);
-        const resAsJson = { response: { operation: "mode", value: mode } }
+        const resAsJson = createJSONres('mode', mode);
         if (req.query.save === 'true') {
             saveJSON(resAsJson);
         }
@@ -71,7 +71,7 @@ app.get('/all', function (req, res, next) {
         const mode = getMODE(req.query.nums);
         const median = getMEDIAN(req.query.nums);
         const mean = getMEAN(req.query.nums);
-        const resAsJson = { response: { operation: "all", mean: mean, median: median, mode: mode } }
+        const resAsJson = createJSONresALL(mean, median, mode);
         if (req.query.save === 'true') {
             saveJSON(resAsJson);
         }

@@ -25,6 +25,7 @@ function stringTOint(values) {
     return values.split(",").map(num => parseInt(num))
 }
 function getMEAN(values) {
+    //takes the string of number from the query ?nums=1,2,3 and returns the mean
     const nums = stringTOint(values)
     //sum up the values in the nums, and then divide the sum by the length of nums
     const mean = nums.reduce((a, b) => a + b, 0) / nums.length;
@@ -33,6 +34,7 @@ function getMEAN(values) {
 }
 
 function getMEDIAN(values) {
+    //takes the string of number from the query ?nums=1,2,3 and returns the median
     const nums = stringTOint(values);
     //sort nums in ascending order inplace. 
     nums.sort((a, b) => a - b);
@@ -46,6 +48,7 @@ function getMEDIAN(values) {
 }
 
 function getMODE(values) {
+    //takes the string of number from the query ?nums=1,2,3 and returns the mode
     // handles bimodal and no mode
     const nums = stringTOint(values);
     //The mode is the value that appears most frequent
@@ -60,9 +63,9 @@ function getMODE(values) {
     for (let key in freq) {
         if (freq[key] > maxFreq) {
             maxFreq = freq[key];
-            mode = [key];
+            mode = [parseInt(key)];
         } else if (freq[key] === maxFreq) {
-            mode.push(key);
+            mode.push(parseInt(key));
         }
     }
     //if all values appear the same number of times return 'No Mode'
@@ -91,5 +94,10 @@ function saveJSON(newData) {
     })
     return true;
 }
-
-module.exports = { getMEAN, getMEDIAN, getMODE, validQuery, saveJSON }
+function createJSONres(operation, value) {
+    return { response: { operation: operation, value: value } }
+}
+function createJSONresALL(mean, median, mode) {
+    return { response: { operation: "all", mean: mean, median: median, mode: mode } }
+}
+module.exports = { getMEAN, getMEDIAN, getMODE, validQuery, saveJSON, createJSONres, createJSONresALL }
