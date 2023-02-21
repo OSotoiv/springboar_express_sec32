@@ -14,7 +14,7 @@ app.get('/mean', function (req, res, next) {
         const mean = getMEAN(req.query.nums)
         const resAsJson = { response: { operation: "mean", value: mean } };
         if (req.query.save === 'true') {
-            saveJSON(resAsJson)
+            saveJSON(resAsJson);
         }
         if (req.headers.accept.split(',')[0] == 'text/html') {
             const resAsTEXT = `<h1>Operation: Mean</h1><h2>Value: ${mean}</h2>`;
@@ -33,7 +33,7 @@ app.get('/median', function (req, res, next) {
         const median = getMEDIAN(req.query.nums);
         const resAsJson = { response: { operation: "median", value: median } }
         if (req.query.save === 'true') {
-            saveJSON(resAsJson)
+            saveJSON(resAsJson);
         }
         if (req.headers.accept.split(',')[0] == 'text/html') {
             const resAsTEXT = `<h1>Operation: Median</h1><h2>Value: ${median}</h2>`;
@@ -52,7 +52,7 @@ app.get('/mode', function (req, res, next) {
         const mode = getMODE(req.query.nums);
         const resAsJson = { response: { operation: "mode", value: mode } }
         if (req.query.save === 'true') {
-            saveJSON(resAsJson)
+            saveJSON(resAsJson);
         }
         if (req.headers.accept.split(',')[0] == 'text/html') {
             const resAsTEXT = `<h1>Operation: Mode</h1><h2>Value: ${mode}</h2>`;
@@ -73,7 +73,7 @@ app.get('/all', function (req, res, next) {
         const mean = getMEAN(req.query.nums);
         const resAsJson = { response: { operation: "all", mean: mean, median: median, mode: mode } }
         if (req.query.save === 'true') {
-            saveJSON(resAsJson)
+            saveJSON(resAsJson);
         }
         if (req.headers.accept.split(',')[0] == 'text/html') {
             const resAsTEXT = `<h1>Operation: All</h1>

@@ -1,4 +1,5 @@
-const { QueryError } = require('./errors')
+const { QueryError } = require('./errors');
+const { writeFileSync, readFile } = require('fs');
 
 function validQuery(values) {
     if (!values) {
@@ -71,8 +72,24 @@ function getMODE(values) {
     }
     return mode;
 }
-function saveJSON(response) {
-    console.log(response)
+//saves results to a json file if the user specifies in the querry string save=true
+function saveJSON(newData) {
+    newData['date'] = new Date().toISOString();
+    readFile('results.json', 'utf8', (err, data) => {
+        if (err) {
+            throw err;
+        }
+        oldData = JSON.parse(data);
+        oldData.push(newData);
+        updatedData = JSON.stringify(oldData)
+        writeFileSync('results.json', updatedData, (err) => {
+            if (err) {
+                console.error(err)
+                throw err;
+            }
+        })
+    })
+    return true;
 }
 
 module.exports = { getMEAN, getMEDIAN, getMODE, validQuery, saveJSON }

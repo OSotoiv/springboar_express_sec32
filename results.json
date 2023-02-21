@@ -1,0 +1,35 @@
+[
+    {
+        "response": {
+            "operation": "all",
+            "mean": 4.4,
+            "median": 4.5,
+            "mode": [
+                "2",
+                "6"
+            ]
+        },
+        "date": "2023-02-21T16:01:13.060Z"
+    },
+    {
+        "response": {
+            "operation": "all",
+            "mean": 4.4,
+            "median": 4.5,
+            "mode": [
+                "2",
+                "6"
+            ]
+        },
+        "date": "2023-02-21T16:01:25.191Z"
+    },
+    {
+        "response": {
+            "operation": "all",
+            "mean": 3,
+            "median": 3,
+            "mode": "No Mode"
+        },
+        "date": "2023-02-21T16:01:55.395Z"
+    }
+]
